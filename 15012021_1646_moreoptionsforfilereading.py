@@ -1,4 +1,4 @@
-f = open("quiz_question_database.txt", "r")
+f = open("quizdatabase.txt", "r")
 
 
 
