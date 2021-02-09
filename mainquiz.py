@@ -27,6 +27,8 @@ class Game:
         self.running = False
         self.pressed = 'EMPTY'
         self.all_sprites = pygame.sprite.Group()
+        self.all_buttons = []
+        self.current_screen = menu_1
 
     def reset_buttons(self):
         self.pressed = 'EMPTY'
@@ -46,7 +48,7 @@ class Game:
         self.draw_text('Welcome to the QUIZ', 32, BLACK, WIDTH / 2, HEIGHT / 4)
         self.draw_text('by Olimpia', 15, BLACK, WIDTH / 2, HEIGHT / 2.75)
 
-        self.draw_text(self.pressed, 40, RED, 200, 400)
+
 
         ####
         b1 = Button(self, 'Start', 'start', YELLOW, GREEN, 80, 40, WIDTH / 2, HEIGHT / 5)
@@ -55,6 +57,16 @@ class Game:
         self.all_sprites.add(b1)
         self.all_sprites.add(b2)
         self.all_sprites.add(b3)
+        self.all_buttons.append(b1)
+        self.all_buttons.append(b2)
+        self.all_buttons.append(b3)
+
+        if pygame.mouse.get_pressed()[0]:
+            for button in self.all_buttons:
+                if button.check_if_collided(pygame.mouse.get_pos()):
+                    self.pressed = button.buttonValue
+
+        self.draw_text(self.pressed, 40, RED, 200, 400)
 
         # check if the button has been clicked
         # events
@@ -66,7 +78,7 @@ class Game:
         # by running the check_if_collided method on each button and passing in the mouse position
         # 5. if true - assign button.buttonValue to self.pressed
         #self.pressed = str(pygame.mouse.get_pressed()) # returns -  (bool, bool, bool) returns if mouse has been pressed
-        self.pressed = str(pygame.mouse.get_pos())  #  returns - (int, int) returns the position of the mouse
+        #self.pressed = str(pygame.mouse.get_pos())  #  returns - (int, int) returns the position of the mouse
 
         pygame.display.flip()
 
@@ -84,6 +96,12 @@ class Button(pygame.sprite.Sprite):
         self.y = y
         self.draw_on_screen()
 
+    def check_if_collided(self, pos):
+        a = pos[0] > self.x - (self.w / 2) and pos[0] < self.x + (self.w / 2)
+        b = pos[1] > self.y + (self.h / 2 * 0.6) - (self.h / 2) and pos[1] < self.y + (self.h / 2 * 0.6) + (self.h / 2)
+        return a and b
+
+
     def draw_on_screen(self):
         # Main functionality
         # Create box here
@@ -97,6 +115,17 @@ class Button(pygame.sprite.Sprite):
 
     def press(self):
         return self.buttonValue
+
+
+
+
+class Menu1():
+    def __init__(game):
+    self.game = game
+
+    def screenRun(game):
+
+
 
 
 g = Game()
