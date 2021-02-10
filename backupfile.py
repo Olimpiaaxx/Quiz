@@ -1,12 +1,22 @@
 import pygame
 import random
-from screeninterface import *
 from quizfile import *
 from os import path
 from sys import exit
-from settings import *
-from Menu1 import *
-from startscreen import *
+
+
+WIDTH = 480
+HEIGHT = 600
+# define colors
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+YELLOW = (255, 255, 0)
+FONT_NAME = 'arial'
+
+
 
 class Game:
     def __init__(self):
@@ -18,8 +28,6 @@ class Game:
         self.pressed = 'EMPTY'
         self.all_sprites = pygame.sprite.Group()
         self.all_buttons = []
-        self.menu_1 = Menu1(self)
-        self.start_screen = StartScreen(self)
         self.current_screen = 'menu_1' # tells you what screen the program is on
 
 
@@ -43,8 +51,6 @@ class Game:
         self.draw_text('Welcome to the QUIZ', 32, BLACK, WIDTH / 2, HEIGHT / 4)
         self.draw_text('by Olimpia', 15, BLACK, WIDTH / 2, HEIGHT / 2.75)
 
-    def pick_screen(self):
-        
 
 
         ####
@@ -64,6 +70,18 @@ class Game:
                     self.pressed = button.buttonValue
 
         self.draw_text(self.pressed, 40, RED, 200, 400)
+
+        # check if the button has been clicked
+        # events
+        # 1. Create a new list all_buttons in game class which will hold our buttons
+        # 2. Add all buttons to our new list
+        # 3. Create a new function in Button class that takes a pos and returns a boolean if that pos is within the range of the button
+        # 4. in game.show_start_screen function check if mouse button has been pressed
+        # if pressed, loop through the list of our buttons and check if any of the button colided with the mouse
+        # by running the check_if_collided method on each button and passing in the mouse position
+        # 5. if true - assign button.buttonValue to self.pressed
+        #self.pressed = str(pygame.mouse.get_pressed()) # returns -  (bool, bool, bool) returns if mouse has been pressed
+        #self.pressed = str(pygame.mouse.get_pos())  #  returns - (int, int) returns the position of the mouse
 
         pygame.display.flip()
 
@@ -90,6 +108,7 @@ class Button(pygame.sprite.Sprite):
     def draw_on_screen(self):
         # Main functionality
         # Create box here
+
         pygame.draw.rect(self.game.screen, self.b_color, (self.x - (self.w / 2), self.y - (self.h/2 * 0.4), self.w, self.h))
         # Last
         self.show_text()
@@ -99,6 +118,17 @@ class Button(pygame.sprite.Sprite):
 
     def press(self):
         return self.buttonValue
+
+
+
+
+class Menu1():
+    def __init__(self, game):
+        self.game = game
+
+    def screenRun(self):
+        #self.game
+
 
 
 g = Game()
