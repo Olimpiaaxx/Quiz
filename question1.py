@@ -27,7 +27,7 @@ class Question1(ScreenInterface):
         questions.append(wrong_answer2)
         questions.append(wrong_answer3)
 
-        random.shuffle(self.questions)
+        random.shuffle(questions)
 
 
         # pytanie, all_answers[], correct_answer
