@@ -1,0 +1,41 @@
+# check if the button has been clicked
+# events
+# 1. Create a new list all_buttons in game class which will hold our buttons
+# 2. Add all buttons to our new list
+# 3. Create a new function in Button class that takes a pos and returns 
+a boolean if that pos is within the range of the button
+# 4. in game.show_start_screen function check if mouse button has been pressed
+# if pressed, loop through the list of our buttons and check if any of the button 
+colided with the mouse
+# by running the check_if_collided method on each button and passing in the mouse 
+position
+# 5. if true - assign button.buttonValue to self.pressed
+#self.pressed = str(pygame.mouse.get_pressed()) # returns -  (bool, bool, bool) 
+returns if mouse has been pressed
+#self.pressed = str(pygame.mouse.get_pos())  #  returns - (int, int) 
+returns the position of the mouse
+
+
+1. Create a new variable in Game class that will hold the information 
+of which screen we are currently on  - set it to 'menu_1' in _init_
+
+2. Create a new class Menu1 with a function screenRun(game)
+2.1 Create a Screen interface 
+- screenRun(game)
+2.1 Menu1 should inherit Screen interface
+
+3. Create the new class Menu1 in Game class _init_ method
+
+4. Create a new function pick_screen in Game class which 
+will run a screen based on the variable in exercise 1, 
+if menu_1, run menu1.screenRun
+
+5. Create a start screen
+
+6. Create settings file
+
+
+7. Add new method - button_function_run to ScreenInterface, implement in Menu1
+8. In that function, check if I pressed Start, if yes, change the current screen to start screen
+9. then change self.pressed to 'EMPTY'
+10. In start screen show some text

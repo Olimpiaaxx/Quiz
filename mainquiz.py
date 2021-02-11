@@ -7,6 +7,7 @@ from sys import exit
 from settings import *
 from Menu1 import *
 from startscreen import *
+from question1 import *
 
 class Game:
     def __init__(self):
@@ -20,8 +21,8 @@ class Game:
         self.all_buttons = []
         self.menu_1 = Menu1(self)
         self.start_screen = StartScreen(self)
-        self.current_screen = 'menu_1' # tells you what screen the program is on
-
+        self.question_1 = Question1(self)
+        self.current_screen = self.menu_1 # tells you what screen the program is on
 
     def reset_buttons(self):
         self.pressed = 'EMPTY'
@@ -34,36 +35,23 @@ class Game:
         text_rect.midtop = (x, y)
         self.screen.blit(text_surface, text_rect)
 
+    def create_button(self, text, buttonValue, t_color, b_color, w, h, x, y):
+        button = Button(self, text, buttonValue, t_color, b_color, w, h, x, y)
+        self.all_buttons.append(button)
+
     def show_start_screen(self):
         self.running = True
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         self.screen.fill(WHITE)
-
-
-        self.draw_text('Welcome to the QUIZ', 32, BLACK, WIDTH / 2, HEIGHT / 4)
-        self.draw_text('by Olimpia', 15, BLACK, WIDTH / 2, HEIGHT / 2.75)
-
-    def pick_screen(self):
-        
-
-
-        ####
-        b1 = Button(self, 'Start', 'start', YELLOW, GREEN, 80, 40, WIDTH / 2, HEIGHT / 5)
-        b2 = Button(self, 'HELLO', 'hello', RED, BLUE, 100, 50, WIDTH / 4, HEIGHT / 2)
-        b3 = Button(self, 'Sylan', 'sylan', BLACK, YELLOW, 200, 100, 260, 230)
-        self.all_sprites.add(b1)
-        self.all_sprites.add(b2)
-        self.all_sprites.add(b3)
-        self.all_buttons.append(b1)
-        self.all_buttons.append(b2)
-        self.all_buttons.append(b3)
+        self.current_screen.screenRun()
+        self.current_screen.button_function_run()
+        self.reset_buttons()
 
         if pygame.mouse.get_pressed()[0]:
             for button in self.all_buttons:
                 if button.check_if_collided(pygame.mouse.get_pos()):
                     self.pressed = button.buttonValue
 
-        self.draw_text(self.pressed, 40, RED, 200, 400)
 
         pygame.display.flip()
 

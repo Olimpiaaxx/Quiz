@@ -6,5 +6,5 @@ class ScreenInterface:
         pass
         # main method to play the screen
 
-#TODO:
-#
+    def button_function_run(self):
+        pass
