@@ -6,51 +6,72 @@ import random
 class Question1(ScreenInterface):
     def __init__(self, game):
         self.game = game
-        self.correct_answer = ""
+        self.current_question = []
+        self.got_question = False
+        self.all_unread_questions = []
+        self.all_read_questions = []
+        # do 2 new lists, one with not read questions and one with read questions
 
+        # create new function here which will put all questions into new list
 
-    def question_get(self):
+    def new_question(self):
         dir = path.dirname(__file__)
         data_dir = path.join(dir, 'data')
         quiz_database = path.join(data_dir, 'quizdatabase.txt')
         f = open(quiz_database, "r")
+        next(f)
         for line in f:
             fields = line.split("|")
+            self.all_unread_questions.append(fields)
+            random.shuffle(self.all_unread_questions)
+        #    for item in f:
+        #        skip = True
+        #        if skip:
+        #            skip = False
+        #            continue
+
+        # change below function to read record from the new list and put the previous into read questions list
+    def question_get(self):
+        if self.all_unread_questions == []:
+            self.new_question()
+
+        #print(self.all_unread_questions)
+        fields = self.all_unread_questions[0]
+        self.all_read_questions.append(fields)
         question = fields[0]
-        self.correct_answer = fields[1]
-        wrong_answer1 = fields[2]
-        wrong_answer2 = fields[3]
-        wrong_answer3 = fields[4]
-        tags = fields[5]
-        questions.append(self.correct_answer)
-        questions.append(wrong_answer1)
-        questions.append(wrong_answer2)
-        questions.append(wrong_answer3)
+        correct_answer = fields[1]
+        #tags = fields[5]
+        answers = []
+        answers.append(fields[1])
+        answers.append(fields[2])
+        answers.append(fields[3])
+        answers.append(fields[4])
 
-        random.shuffle(questions)
-
-
-        # pytanie, all_answers[], correct_answer
-
+        random.shuffle(answers)
+        return [question, answers, correct_answer]
 
 
     def screenRun(self):
+        if not self.got_question:
+            self.current_question = self.question_get()
+            self.got_question = True
 
-        self.game.draw_text('The first question is... ' + fields[0], 32, BLACK, WIDTH / 2, HEIGHT / 4)
 
-        self.game.create_button('A: ' + self.questions[1], self.questions[1], BLACK, RED, 60, 30, WIDTH / 4, HEIGHT / 3)
-        self.game.create_button('B: ' + self.questions[2], self.questions[2], BLACK, RED, 60, 30, WIDTH / 1.25, HEIGHT / 3)
-        self.game.create_button('C: ' + self.questions[3], self.questions[3], BLACK, RED, 60, 30, WIDTH / 4, HEIGHT / 2)
-        self.game.create_button('D: ' + self.questions[4], self.questions[4], BLACK, RED, 60, 30, WIDTH / 1.25, HEIGHT / 2)
+        self.game.draw_text('The first question is... ' + self.current_question[0], 32, BLACK, WIDTH / 2, HEIGHT / 4)
+
+        self.game.create_button('A: ' + self.current_question[1][0], self.current_question[1][0], BLACK, RED, 60, 30, WIDTH / 4, HEIGHT / 3)
+        self.game.create_button('B: ' + self.current_question[1][1], self.current_question[1][1], BLACK, RED, 60, 30, WIDTH / 1.25, HEIGHT / 3)
+        self.game.create_button('C: ' + self.current_question[1][2], self.current_question[1][2], BLACK, RED, 60, 30, WIDTH / 4, HEIGHT / 2)
+        self.game.create_button('D: ' + self.current_question[1][3], self.current_question[1][3], BLACK, RED, 60, 30, WIDTH / 1.25, HEIGHT / 2)
 
 
         self.game.create_button('Menu', 'menu', BLACK, RED, 100, 50, WIDTH / 2, HEIGHT / 1.5)
         self.game.create_button('BACK', 'back', BLACK, RED, 100, 50, WIDTH / 4, HEIGHT / 1.5)
 
     def button_function_run(self):
-        if self.game.pressed == self.correct_answer:
+        if self.game.pressed == self.current_question[2]:
             self.game.draw_text('CORRECT!', 32, BLACK, WIDTH / 2, HEIGHT / 1.75)
-        if self.game.pressed != 'EMPTY' and self.game.pressed != self.questions[0]:
+        if self.game.pressed in self.current_question[1] and self.game.pressed != self.current_question[2]:
             self.game.draw_text('wrong!', 32, BLACK, WIDTH / 2, HEIGHT / 1.75)
         #if self.game.pressed == 'b':
         #    self.game.draw_text('MAYBE NEXT TIME', 32, BLACK, WIDTH / 2, HEIGHT / 1.75)

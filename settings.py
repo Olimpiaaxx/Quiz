@@ -1,5 +1,5 @@
-WIDTH = 480
-HEIGHT = 600
+WIDTH = 1000
+HEIGHT = 650
 
 # define colors
 WHITE = (255, 255, 255)

@@ -14,7 +14,7 @@ class Game:
         pygame.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         self.font_name = pygame.font.match_font(FONT_NAME)
-        #pygame.display.set_caption("Welcome to the QUIZ!")
+        pygame.display.set_caption("Welcome to the QUIZ!")
         self.running = False
         self.pressed = 'EMPTY'
         self.all_sprites = pygame.sprite.Group()

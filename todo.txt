@@ -39,3 +39,12 @@ if menu_1, run menu1.screenRun
 8. In that function, check if I pressed Start, if yes, change the current screen to start screen
 9. then change self.pressed to 'EMPTY'
 10. In start screen show some text
+
+11. Organize the project to use standard names - variables, classes, file names etc.
+Google: Python Coding Standards
+
+12. Create a new button in question1 'Next Question'
+
+13. Find a way to keep track of questions you did in question_get function
+
+14. Call the next question
