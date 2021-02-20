@@ -10,3 +10,6 @@ BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 
 FONT_NAME = 'arial'
+
+#
+POINTS = 100

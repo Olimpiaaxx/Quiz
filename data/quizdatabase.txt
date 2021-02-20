@@ -1,2 +1,5 @@
 QUESTION|CORRECT ANSWER|WRONG ANSWER|WRONG ANSWER|WRONG ANSWER|TAGS
 What is the capital of England?|London|Bristol|Slough|Windsor|age,stremlau
+What is the capital of Poland?|Warsaw|Poznan|Krakow|Kikol|capital, poland
+What is the capital of Spain?|Madrid|Barcelona|Seville|Valencia|capital, spain
+What is the capital of Italy?|Rome|Venice|Milan|Florence|capital, italy

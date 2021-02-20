@@ -23,6 +23,10 @@ class Game:
         self.start_screen = StartScreen(self)
         self.question_1 = Question1(self)
         self.current_screen = self.menu_1 # tells you what screen the program is on
+        self.score = 0
+
+    def add_score(self, points):
+        self.score += (points / 2)
 
     def reset_buttons(self):
         self.pressed = 'EMPTY'
@@ -51,9 +55,11 @@ class Game:
             for button in self.all_buttons:
                 if button.check_if_collided(pygame.mouse.get_pos()):
                     self.pressed = button.buttonValue
+        self.screen_flip()
 
-
+    def screen_flip(self):
         pygame.display.flip()
+
 
 class Button(pygame.sprite.Sprite):
     def __init__(self, game, text, buttonValue, t_color, b_color, w, h, x, y):
