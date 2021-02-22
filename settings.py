@@ -13,3 +13,4 @@ FONT_NAME = 'arial'
 
 #
 POINTS = 100
+QUESTION_COUNT = 2

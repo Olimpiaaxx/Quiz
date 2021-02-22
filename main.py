@@ -8,6 +8,11 @@ from settings import *
 from menuscreen import *
 from startscreen import *
 from questionscreen import *
+from gameoverscreen import *
+
+#load images
+#eg: menscreen = pygame.image.load('img/nameofthefile.typeofthefile')
+
 
 class Game:
     def __init__(self):
@@ -22,11 +27,20 @@ class Game:
         self.menu_screen = MenuScreen(self)
         self.start_screen = StartScreen(self)
         self.question_screen = QuestionScreen(self)
+        self.game_over_screen = GameOverScreen(self)
         self.current_screen = self.menu_screen # tells you what screen the program is on
         self.score = 0
+        self.total_score = 0
+        self.total_questions = 0
 
     def add_score(self, points):
         self.score += (points)
+
+    def final_score(self):
+        self.total_score += self.score
+
+    def reset_score(self):
+        self.score = 0
 
     def reset_buttons(self):
         self.pressed = 'EMPTY'
@@ -80,7 +94,6 @@ class Button(pygame.sprite.Sprite):
         return a and b
 
     def draw_on_screen(self):
-        # Main functionality
         # Create box here
         pygame.draw.rect(self.game.screen, self.b_color, (self.x - (self.w / 2), self.y - (self.h/2 * 0.4), self.w, self.h))
         # Last
@@ -95,7 +108,6 @@ class Button(pygame.sprite.Sprite):
 g = Game()
 g.show_start_screen()
 while g.running:
-    #g.new()
     g.show_start_screen()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

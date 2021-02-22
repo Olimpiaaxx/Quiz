@@ -11,6 +11,7 @@ class QuestionScreen(ScreenInterface):
         self.got_question = False
         self.all_unread_questions = []
         self.all_read_questions = []
+        self.question_count = 0
 
     def new_question(self):
         dir = path.dirname(__file__)
@@ -65,7 +66,7 @@ class QuestionScreen(ScreenInterface):
         if self.game.pressed in self.current_question[1] and self.game.pressed != self.current_question[2]:
             self.screen_question_end_show_wrong()
         if self.game.pressed == 'menu':
-            self.game.current_screen = self.game.menu_1
+            self.game.current_screen = self.game.menu_screen
         if self.game.pressed == 'back':
             self.game.current_screen = self.game.start_screen
 
@@ -82,9 +83,18 @@ class QuestionScreen(ScreenInterface):
         self.game.draw_text('WRONG', 32, WHITE, WIDTH / 2, HEIGHT / 1.75)
         self.game.draw_text('The correct answer was ' + self.correct_answer, 25, WHITE, WIDTH / 2, HEIGHT / 1.25)
         self.game.screen_flip()
-        time.sleep(2)
+        time.sleep(1.5)
         self.next_question()
 
     def next_question(self):
         #to keep track of questions
         self.current_question = self.question_get()
+        self.question_count += 1
+        if self.question_count == QUESTION_COUNT:
+            #zawolac ponizsza funkcje
+            self.game.current_screen = self.game.game_over_screen
+
+            self.question_count = 0
+            self.game.final_score()
+
+    #def
