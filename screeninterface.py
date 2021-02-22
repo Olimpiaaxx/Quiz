@@ -2,7 +2,7 @@ class ScreenInterface:
     def __init__(self, game):
         pass
 
-    def screenRun(self):
+    def screen_run(self):
         pass
         # main method to play the screen
 

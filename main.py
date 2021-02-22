@@ -5,28 +5,28 @@ from quizfile import *
 from os import path
 from sys import exit
 from settings import *
-from Menu1 import *
+from menuscreen import *
 from startscreen import *
-from question1 import *
+from questionscreen import *
 
 class Game:
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         self.font_name = pygame.font.match_font(FONT_NAME)
-        pygame.display.set_caption("Welcome to the QUIZ!")
+        pygame.display.set_caption("QUIZ!")
         self.running = False
         self.pressed = 'EMPTY'
         self.all_sprites = pygame.sprite.Group()
         self.all_buttons = []
-        self.menu_1 = Menu1(self)
+        self.menu_screen = MenuScreen(self)
         self.start_screen = StartScreen(self)
-        self.question_1 = Question1(self)
-        self.current_screen = self.menu_1 # tells you what screen the program is on
+        self.question_screen = QuestionScreen(self)
+        self.current_screen = self.menu_screen # tells you what screen the program is on
         self.score = 0
 
     def add_score(self, points):
-        self.score += (points / 2)
+        self.score += (points)
 
     def reset_buttons(self):
         self.pressed = 'EMPTY'
@@ -47,7 +47,7 @@ class Game:
         self.running = True
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         self.screen.fill(WHITE)
-        self.current_screen.screenRun()
+        self.current_screen.screen_run()
         self.current_screen.button_function_run()
         self.reset_buttons()
 
@@ -59,7 +59,6 @@ class Game:
 
     def screen_flip(self):
         pygame.display.flip()
-
 
 class Button(pygame.sprite.Sprite):
     def __init__(self, game, text, buttonValue, t_color, b_color, w, h, x, y):
@@ -80,7 +79,6 @@ class Button(pygame.sprite.Sprite):
         b = pos[1] > self.y + (self.h / 2 * 0.6) - (self.h / 2) and pos[1] < self.y + (self.h / 2 * 0.6) + (self.h / 2)
         return a and b
 
-
     def draw_on_screen(self):
         # Main functionality
         # Create box here
@@ -94,7 +92,6 @@ class Button(pygame.sprite.Sprite):
     def press(self):
         return self.buttonValue
 
-
 g = Game()
 g.show_start_screen()
 while g.running:
@@ -104,13 +101,5 @@ while g.running:
         if event.type == pygame.QUIT:
             g.running = False
 
-
-
-
-
-
-## TODO:
-#find how to end the screen
-#pygame.display.quit()
 pygame.quit()
 exit()
