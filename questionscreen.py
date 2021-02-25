@@ -33,6 +33,7 @@ class QuestionScreen(ScreenInterface):
         self.all_unread_questions.remove(fields)
         question = fields[0]
         self.correct_answer = fields[1]
+        category = fields[5]
         #tags = fields[5]
         answers = []
         answers.append(fields[1])
