@@ -11,7 +11,7 @@ from questionscreen import *
 from gameoverscreen import *
 
 #load images
-#eg: menscreen = pygame.image.load('img/nameofthefile.typeofthefile')
+#eg: menuscreen = pygame.image.load('img/nameofthefile.typeofthefile')
 
 
 class Game:
@@ -96,7 +96,6 @@ class Button(pygame.sprite.Sprite):
     def draw_on_screen(self):
         # Create box here
         pygame.draw.rect(self.game.screen, self.b_color, (self.x - (self.w / 2), self.y - (self.h/2 * 0.4), self.w, self.h))
-        # Last
         self.show_text()
 
     def show_text(self):

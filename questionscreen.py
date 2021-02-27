@@ -11,7 +11,12 @@ class QuestionScreen(ScreenInterface):
         self.got_question = False
         self.all_unread_questions = []
         self.all_read_questions = []
+        self.all_unread_questions_capital = []
+        self.all_unread_questions_dict = {'capital':[],
+                                          'attractions': [],
+                                            'food': []}
         self.question_count = 0
+        self.current_category = ""
 
     def new_question(self):
         dir = path.dirname(__file__)
@@ -21,20 +26,25 @@ class QuestionScreen(ScreenInterface):
         next(f)
         for line in f:
             fields = line.split("|")
-            self.all_unread_questions.append(fields)
-        random.shuffle(self.all_unread_questions)
+            self.all_unread_questions_dict[str(fields[5])].append(fields)
+        for key in self.all_unread_questions_dict:
+            random.shuffle(self.all_unread_questions_dict[key])
+
+    def question_get_from_category(self):
+        if self.all_unread_questions_dict[self.current_category] == []:
+            self.new_question()
+        if self.all_unread_questions_dict[self.current_category] == []:
+            print("Error: " + self.current.category + " category not found in database")
+        fields = self.all_unread_questions_dict[self.current_category][0]
+        self.all_read_questions.append(fields)
+        self.all_unread_questions_dict[self.current_category].remove(fields)
+        return fields
 
     def question_get(self):
-        if self.all_unread_questions == []:
-            self.new_question()
-        #print(self.all_unread_questions)
-        fields = self.all_unread_questions[0]
-        self.all_read_questions.append(fields)
-        self.all_unread_questions.remove(fields)
+        fields = self.question_get_from_category()
         question = fields[0]
         self.correct_answer = fields[1]
-        category = fields[5]
-        #tags = fields[5]
+
         answers = []
         answers.append(fields[1])
         answers.append(fields[2])
@@ -49,11 +59,13 @@ class QuestionScreen(ScreenInterface):
             self.current_question = self.question_get()
             self.got_question = True
 
-        self.game.draw_text('The first question is... ' + self.current_question[0], 32, BLACK, WIDTH / 2, HEIGHT / 4)
+        self.game.draw_text('The question is... ' + self.current_question[0], 32, BLACK, WIDTH / 2, HEIGHT / 4)
         self.game.create_button('A: ' + self.current_question[1][0], self.current_question[1][0], BLACK, RED, 60, 30, WIDTH / 4, HEIGHT / 3)
         self.game.create_button('B: ' + self.current_question[1][1], self.current_question[1][1], BLACK, RED, 60, 30, WIDTH / 1.25, HEIGHT / 3)
         self.game.create_button('C: ' + self.current_question[1][2], self.current_question[1][2], BLACK, RED, 60, 30, WIDTH / 4, HEIGHT / 2)
         self.game.create_button('D: ' + self.current_question[1][3], self.current_question[1][3], BLACK, RED, 60, 30, WIDTH / 1.25, HEIGHT / 2)
+
+        self.game.draw_text('The current category is: ' + self.current_category, 32, RED, WIDTH * 0.7, HEIGHT * 0.2)
 
         self.game.create_button('Menu', 'menu', BLACK, RED, 100, 50, WIDTH / 2, HEIGHT / 1.5)
         self.game.create_button('BACK', 'back', BLACK, RED, 100, 50, WIDTH / 4, HEIGHT / 1.5)
@@ -92,10 +104,6 @@ class QuestionScreen(ScreenInterface):
         self.current_question = self.question_get()
         self.question_count += 1
         if self.question_count == QUESTION_COUNT:
-            #zawolac ponizsza funkcje
             self.game.current_screen = self.game.game_over_screen
-
             self.question_count = 0
             self.game.final_score()
-
-    #def
