@@ -9,7 +9,6 @@ class QuestionScreen(ScreenInterface):
         self.game = game
         self.current_question = []
         self.got_question = False
-        self.all_unread_questions = []
         self.all_read_questions = []
         self.all_unread_questions_capital = []
         self.all_unread_questions_dict = {'capital':[],
@@ -50,7 +49,6 @@ class QuestionScreen(ScreenInterface):
         answers.append(fields[2])
         answers.append(fields[3])
         answers.append(fields[4])
-
         random.shuffle(answers)
         return [question, answers, self.correct_answer]
 
@@ -59,18 +57,18 @@ class QuestionScreen(ScreenInterface):
             self.current_question = self.question_get()
             self.got_question = True
 
-        self.game.draw_text('The question is... ' + self.current_question[0], 32, BLACK, WIDTH / 2, HEIGHT / 4)
-        self.game.create_button('A: ' + self.current_question[1][0], self.current_question[1][0], BLACK, RED, 60, 30, WIDTH / 4, HEIGHT / 3)
-        self.game.create_button('B: ' + self.current_question[1][1], self.current_question[1][1], BLACK, RED, 60, 30, WIDTH / 1.25, HEIGHT / 3)
-        self.game.create_button('C: ' + self.current_question[1][2], self.current_question[1][2], BLACK, RED, 60, 30, WIDTH / 4, HEIGHT / 2)
-        self.game.create_button('D: ' + self.current_question[1][3], self.current_question[1][3], BLACK, RED, 60, 30, WIDTH / 1.25, HEIGHT / 2)
+        self.game.draw_text('The question is... ' + self.current_question[0], 35, TEXT_COLOR, WIDTH / 2, HEIGHT / 4)
+        self.game.create_button('A: ' + self.current_question[1][0], self.current_question[1][0], WHITE, DARK_PURPLE, 150, 40, WIDTH / 4, HEIGHT / 2.75)
+        self.game.create_button('B: ' + self.current_question[1][1], self.current_question[1][1], WHITE, DARK_PURPLE, 150, 40, WIDTH / 1.25, HEIGHT / 2.75)
+        self.game.create_button('C: ' + self.current_question[1][2], self.current_question[1][2], WHITE, DARK_PURPLE, 150, 40, WIDTH / 4, HEIGHT / 1.75)
+        self.game.create_button('D: ' + self.current_question[1][3], self.current_question[1][3], WHITE, DARK_PURPLE, 150, 40, WIDTH / 1.25, HEIGHT / 1.75)
 
-        self.game.draw_text('The current category is: ' + self.current_category, 32, RED, WIDTH * 0.7, HEIGHT * 0.2)
+        self.game.draw_text('The current category is: ' + self.current_category, 25, TEXT_COLOR, WIDTH / 2, HEIGHT * 0.15)
 
-        self.game.create_button('Menu', 'menu', BLACK, RED, 100, 50, WIDTH / 2, HEIGHT / 1.5)
-        self.game.create_button('BACK', 'back', BLACK, RED, 100, 50, WIDTH / 4, HEIGHT / 1.5)
+        self.game.create_button('MENU', 'menu', WHITE, DARK_GREEN, 150, 40, WIDTH / 3, HEIGHT / 1.15)
+        self.game.create_button('BACK', 'back', WHITE, DARK_GREEN, 150, 40, WIDTH / 1.5, HEIGHT / 1.15)
 
-        self.game.draw_text(str(int(self.game.score)), 18, RED, WIDTH / 2, 10)
+        self.game.draw_text(str(int(self.game.score)), 20, TEXT_COLOR, WIDTH / 2, 10)
 
     def button_function_run(self):
         if self.game.pressed == self.current_question[2]:
@@ -84,17 +82,17 @@ class QuestionScreen(ScreenInterface):
             self.game.current_screen = self.game.start_screen
 
     def screen_question_end_show_correct(self):
-        self.game.screen.fill(BLACK)
-        self.game.draw_text('CORRECT!', 32, WHITE, WIDTH / 2, HEIGHT / 1.75)
-        self.game.draw_text('+ ' + str(POINTS), 32, WHITE,WIDTH/2, HEIGHT * 0.1)
+        self.game.screen.fill(BACKGROUND_COLOR)
+        self.game.draw_text('CORRECT!', 35, TEXT_COLOR, WIDTH / 2, HEIGHT / 3.5)
+        self.game.draw_text('+ ' + str(POINTS), 32, TEXT_COLOR ,WIDTH / 2, HEIGHT * 0.1)
         self.game.screen_flip()
         time.sleep(1)
         self.next_question()
 
     def screen_question_end_show_wrong(self):
-        self.game.screen.fill(BLACK)
-        self.game.draw_text('WRONG', 32, WHITE, WIDTH / 2, HEIGHT / 1.75)
-        self.game.draw_text('The correct answer was ' + self.correct_answer, 25, WHITE, WIDTH / 2, HEIGHT / 1.25)
+        self.game.screen.fill(BACKGROUND_COLOR)
+        self.game.draw_text('WRONG', 35, TEXT_COLOR, WIDTH / 2, HEIGHT / 3.5)
+        self.game.draw_text('The correct answer was ' + self.correct_answer, 25, TEXT_COLOR, WIDTH / 2, HEIGHT / 2.5)
         self.game.screen_flip()
         time.sleep(1.5)
         self.next_question()

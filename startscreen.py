@@ -7,13 +7,13 @@ class StartScreen(ScreenInterface):
 
     def screen_run(self):
         self.game.reset_score()
-        self.game.draw_text('Are you ready?', 32, BLACK, WIDTH / 2, HEIGHT / 4)
-        self.game.draw_text('Choose your category: ', 32, BLACK, WIDTH / 2, HEIGHT / 3)
-        self.game.create_button('Capital', 'capital', BLACK, BLUE, 120, 50, WIDTH / 4, HEIGHT / 1.75)
-        self.game.create_button('Attractions', 'attractions', BLACK, BLUE, 120, 50, WIDTH / 2, HEIGHT / 1.75)
-        self.game.create_button('Food', 'food', BLACK, BLUE, 120, 50, WIDTH / 1.25, HEIGHT / 1.75)
+        self.game.draw_text('Are you ready?', 32, TEXT_COLOR, WIDTH / 2, HEIGHT / 4)
+        self.game.draw_text('Choose your category: ', 32, TEXT_COLOR, WIDTH / 2, HEIGHT / 3)
+        self.game.create_button('Capital', 'capital', WHITE, DARK_PURPLE, 150, 40, WIDTH / 4, HEIGHT / 2.3)
+        self.game.create_button('Attractions', 'attractions', WHITE, DARK_PURPLE, 150, 40, WIDTH / 2, HEIGHT / 2.3)
+        self.game.create_button('Food', 'food', WHITE, DARK_PURPLE, 150, 40, WIDTH / 1.25, HEIGHT / 2.3)
 
-        self.game.create_button('Menu', 'menu', BLACK, RED, 120, 50, WIDTH / 4, HEIGHT / 1.25)
+        self.game.create_button('MENU', 'menu', WHITE, DARK_GREEN, 150, 40, WIDTH / 2, HEIGHT / 1.25)
 
     def button_function_run(self):
         if self.game.pressed == 'menu':

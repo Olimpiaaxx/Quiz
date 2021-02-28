@@ -10,9 +10,8 @@ from startscreen import *
 from questionscreen import *
 from gameoverscreen import *
 
-#load images
-#eg: menuscreen = pygame.image.load('img/nameofthefile.typeofthefile')
 
+img_dir = path.join(path.dirname(__file__), 'img')
 
 class Game:
     def __init__(self):
@@ -32,6 +31,13 @@ class Game:
         self.score = 0
         self.total_score = 0
         self.total_questions = 0
+
+    def load_image(self):
+        #menu screen image
+        self.menu_image = pygame.image.load(path.join(img_dir, 'worldmap.png')).convert()
+        self.menu_image = pygame.transform.scale(self.menu_image, (WIDTH, HEIGHT))
+        self.menu_image_rect = self.menu_image.get_rect()
+        self.menu_image.set_colorkey(BLACK)
 
     def add_score(self, points):
         self.score += (points)
@@ -60,7 +66,7 @@ class Game:
     def show_start_screen(self):
         self.running = True
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
-        self.screen.fill(WHITE)
+        self.screen.fill(BACKGROUND_COLOR)
         self.current_screen.screen_run()
         self.current_screen.button_function_run()
         self.reset_buttons()
