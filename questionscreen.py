@@ -1,4 +1,4 @@
- from screeninterface import *
+from screeninterface import *
 from settings import *
 from os import path
 import random
