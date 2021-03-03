@@ -10,7 +10,6 @@ from startscreen import *
 from questionscreen import *
 from gameoverscreen import *
 
-
 img_dir = path.join(path.dirname(__file__), 'img')
 
 class Game:
@@ -31,6 +30,7 @@ class Game:
         self.score = 0
         self.total_score = 0
         self.total_questions = 0
+
 
     def load_image(self):
         #menu screen image
@@ -109,6 +109,7 @@ class Button(pygame.sprite.Sprite):
 
     def press(self):
         return self.buttonValue
+
 
 g = Game()
 g.show_start_screen()
