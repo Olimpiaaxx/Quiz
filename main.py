@@ -29,7 +29,8 @@ class Game:
         self.current_screen = self.menu_screen # tells you what screen the program is on
         self.score = 0
         self.total_score = 0
-        self.total_questions = 0
+        self.total_questions_answered_correct = 0
+        self.total_questions_answered_wrong = 0
 
 
     def load_image(self):

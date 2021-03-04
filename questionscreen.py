@@ -10,10 +10,9 @@ class QuestionScreen(ScreenInterface):
         self.current_question = []
         self.got_question = False
         self.all_read_questions = []
-        self.all_unread_questions_capital = []
         self.all_unread_questions_dict = {'capital':[],
                                           'attractions': [],
-                                            'food': []}
+                                          'food': []}
         self.question_count = 0
         self.current_category = ""
 
@@ -32,14 +31,19 @@ class QuestionScreen(ScreenInterface):
     def question_get_from_category(self):
         if self.all_unread_questions_dict[self.current_category] == []:
             self.new_question()
+            #to check if database is empty
         if self.all_unread_questions_dict[self.current_category] == []:
             print("Error: " + self.current.category + " category not found in database")
+
         fields = self.all_unread_questions_dict[self.current_category][0]
+        #TODO check if below function can be deleted
         self.all_read_questions.append(fields)
+
         self.all_unread_questions_dict[self.current_category].remove(fields)
         return fields
 
     def question_get(self):
+        self.got_question = False
         fields = self.question_get_from_category()
         question = fields[0]
         self.correct_answer = fields[1]
@@ -72,9 +76,11 @@ class QuestionScreen(ScreenInterface):
 
     def button_function_run(self):
         if self.game.pressed == self.current_question[2]:
+            self.game.total_questions_answered_correct += 1
             self.game.add_score(POINTS)
             self.screen_question_end_show_correct()
         if self.game.pressed in self.current_question[1] and self.game.pressed != self.current_question[2]:
+            self.game.total_questions_answered_wrong += 1
             self.screen_question_end_show_wrong()
         if self.game.pressed == 'menu':
             self.game.current_screen = self.game.menu_screen
