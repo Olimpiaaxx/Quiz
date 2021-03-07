@@ -1,13 +1,17 @@
 QUESTION|CORRECT ANSWER|WRONG ANSWER|WRONG ANSWER|WRONG ANSWER|CATEGORY|
 What is the capital of England?|London|Bristol|Slough|Windsor|capital|
-What is the capital of Poland?|Warsaw|Poznan|Krakow|Kikol|capital|
-What is the capital of Spain?|Madrid|Barcelona|Seville|Valencia|capital|
-What is the capital of Italy?|Rome|Venice|Milan|Florence|capital|
-Where is Eiffel Tower?|Paris|Venice|London|Berlin|attractions|
+What is the capital of Uganda?|Kampala|Lome|Bangkok|Colombo|capital|
+What is the capital of Slovakia?|Bratislava|Ljubljana|Belgrade|Riyadh|capital|
+What is the capital of Peru?|Lima|Manila|Melekeok|San Salvador|capital|
+Where is La Sagrada Familia?|Barcelona|Venice|Milan|Madrid|attractions|
 Where is CN Tower?|Toronto|Montreal|Vancouver|Ottawa|attractions|
 Where is Statue of Liberty?|New York|New Jersey|Los Angeles|San Francisco|attractions|
 Where is Burj Khalifa?|Dubai|Abu Dhabi|Singapore|Tokyo|attractions|
 Where are the famous PIEROGI from?|Poland|Czech Republic|Austria|Germany|food|
 Where is the famous SCHNITZEL from?|Austria|Hungary|Russia|Poland|food|
 Where is the famous POUTINE from?|Canada|Australia|USA|Brazil|food|
-Where is the famous GEALTO from?|Italy|Spain|England|France|food|
+Where is the famous PAELLA from?|Spain|Italy|England|France|food|
+Where is Victoria Falls located?|Zambia|Iceland|Uganda|Australia|nature|
+Where is Mount Kilimanjaro located?|Tanzania|Japan|Russia|Thailand|nature|
+Where is Pamukkale located?|Turkey|Italy|Iceland|Greece|nature|
+Where is Banff National Park located?|Canada|Italy|New Zealand|France|nature|

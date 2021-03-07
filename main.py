@@ -40,6 +40,31 @@ class Game:
         self.menu_image_rect = self.menu_image.get_rect()
         self.menu_image.set_colorkey(BLACK)
 
+        #correct answer image
+        self.correct_answer_image = pygame.image.load(path.join(img_dir, 'correct.png')).convert()
+        self.correct_answer_image = pygame.transform.scale(self.correct_answer_image, (100, 50))
+        self.correct_answer_image_rect = self.correct_answer_image.get_rect()
+        self.correct_answer_image_rect.centerx = WIDTH / 1.6
+        self.correct_answer_image_rect.bottom = HEIGHT / 2.9
+        self.correct_answer_image.set_colorkey(BLACK)
+
+        #wrong answer image
+        self.wrong_answer_image = pygame.image.load(path.join(img_dir, 'wrong.png')).convert()
+        self.wrong_answer_image = pygame.transform.scale(self.wrong_answer_image, (100, 50))
+        self.wrong_answer_image_rect = self.wrong_answer_image.get_rect()
+        self.wrong_answer_image_rect.centerx = WIDTH / 1.65
+        self.wrong_answer_image_rect.bottom = HEIGHT / 2.8
+        self.wrong_answer_image.set_colorkey(BLACK)
+
+        #Gameover image
+        self.game_over_image = pygame.image.load(path.join(img_dir, 'skyline.png')).convert()
+        self.game_over_image = pygame.transform.scale(self.game_over_image, (WIDTH, 300))
+        self.game_over_image_rect = self.game_over_image.get_rect()
+        self.game_over_image_rect.centerx = WIDTH / 2
+        self.game_over_image_rect.bottom = HEIGHT / 1
+        self.game_over_image.set_colorkey(BLACK)
+
+
     def add_score(self, points):
         self.score += (points)
 
