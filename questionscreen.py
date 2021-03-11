@@ -3,6 +3,7 @@ from settings import *
 from os import path
 import random
 import time
+import pyodbc
 
 class QuestionScreen(ScreenInterface):
     def __init__(self, game):
@@ -20,14 +21,33 @@ class QuestionScreen(ScreenInterface):
 
     #Access questions from databse intp a shuffled dictionary
     def new_question(self):
-        dir = path.dirname(__file__)
-        data_dir = path.join(dir, 'data')
-        quiz_database = path.join(data_dir, 'quizdatabase.txt')
-        f = open(quiz_database, "r")
-        next(f) #ignores the first line which is the schema
-        for line in f:
-            fields = line.split("|")
+    #    dir = path.dirname(__file__)
+    #    data_dir = path.join(dir, 'data')
+    #    quiz_database = path.join(data_dir, 'quizdatabase.txt')
+    #    f = open(quiz_database, "r")
+    #    next(f) #ignores the first line which is the schema
+    #    for line in f:
+    #        fields = line.split("|")
+    #        self.all_unread_questions_dict[str(fields[5])].append(fields)
+
+        conn = pyodbc.connect('Driver={SQL Server};'
+                                'Server=LAPTOP-5818FKV9\SQLEXPRESS;'
+                                'Database=QuizDB;'
+                                'Trusted_Connection=Yes;')
+
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM Quiz')
+
+        # nowalistazczyms = nowafunkcja('SELECT * FROM Quiz')
+
+
+        for row in cursor:
+            fields = [elem for elem in row]
+            #fields = row.split(',')
+            fields.remove(fields[0])
+
             self.all_unread_questions_dict[str(fields[5])].append(fields)
+
         for key in self.all_unread_questions_dict:
             random.shuffle(self.all_unread_questions_dict[key])
 
