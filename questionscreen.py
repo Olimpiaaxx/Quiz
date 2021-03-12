@@ -21,15 +21,6 @@ class QuestionScreen(ScreenInterface):
 
     #Access questions from databse intp a shuffled dictionary
     def new_question(self):
-    #    dir = path.dirname(__file__)
-    #    data_dir = path.join(dir, 'data')
-    #    quiz_database = path.join(data_dir, 'quizdatabase.txt')
-    #    f = open(quiz_database, "r")
-    #    next(f) #ignores the first line which is the schema
-    #    for line in f:
-    #        fields = line.split("|")
-    #        self.all_unread_questions_dict[str(fields[5])].append(fields)
-
         conn = pyodbc.connect('Driver={SQL Server};'
                                 'Server=LAPTOP-5818FKV9\SQLEXPRESS;'
                                 'Database=QuizDB;'

@@ -9,6 +9,7 @@ from menuscreen import *
 from startscreen import *
 from questionscreen import *
 from gameoverscreen import *
+from loginscreen import *
 
 img_dir = path.join(path.dirname(__file__), 'img')
 
@@ -26,6 +27,7 @@ class Game:
         self.start_screen = StartScreen(self)
         self.question_screen = QuestionScreen(self)
         self.game_over_screen = GameOverScreen(self)
+        self.login_screen = LoginScreen(self)
         self.current_screen = self.menu_screen # tells you what screen the program is on
         self.score = 0
         self.total_score = 0
