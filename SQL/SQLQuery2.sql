@@ -1,5 +1,5 @@
-INSERT INTO Quiz(QuestionID, Question, Correct_Answer, Wrong_Answer_One, Wrong_Answer_Two, Wrong_Answer_Three)
-VALUES (1, 'What is the capital of England?','London','Bristol','Slough','Windsor');
+INSERT INTO Quiz(QuestionID, Question, Correct_Answer, Wrong_Answer_One, Wrong_Answer_Two, Wrong_Answer_Three, Category)
+VALUES (1, 'What is the capital of England?','London','Bristol','Slough','Windsor', 'capital');
 
 INSERT INTO Quiz(QuestionID, Question, Correct_Answer, Wrong_Answer_One, Wrong_Answer_Two, Wrong_Answer_Three, Category)
 VALUES (2, 'What is the capital of Uganda?','Kampala','Lome','Bangkok','Colombo', 'capital');
